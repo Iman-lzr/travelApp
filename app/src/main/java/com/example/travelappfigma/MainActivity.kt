@@ -3,6 +3,7 @@ package com.example.travelappfigma
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -383,8 +384,24 @@ fun BookFlight() {
                         }
                     }
                 }
-
             }
+            Spacer(modifier = Modifier.padding(top = 10.dp))
+            Button(
+                onClick = { /*TODO*/ },
+                shape = RoundedCornerShape(10.dp),
+                modifier = Modifier.width(300.dp),
+                contentPadding = PaddingValues(0.dp),
+                border = BorderStroke(2.dp, colorResource(id = R.color.purple_500)),
+                elevation = ButtonDefaults.buttonElevation(7.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.white)) // Couleur de fond
+            ) {
+                Text(
+                    text = "SEARCH FLIGHT",
+                    color = colorResource(id = R.color.purple_500),
+                    fontWeight = FontWeight.Bold
+                )
+            }
+
 
 
         }}}
