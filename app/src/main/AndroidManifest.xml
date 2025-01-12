@@ -23,6 +23,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".FavoritesActivity" />
+        <activity android:name=".BookingActivity" />
+        <activity android:name=".ProfileActivity" />
     </application>
 
 </manifest>

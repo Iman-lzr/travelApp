@@ -1,5 +1,6 @@
 package com.example.travelappfigma
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -28,6 +29,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -37,6 +39,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.travelappfigma.ui.theme.TravelAppFigmaTheme
+
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -83,6 +87,9 @@ fun MainScreen() {
 @Composable
 fun AppBar() {
     TopAppBar(
+        colors = TopAppBarDefaults.topAppBarColors(
+            containerColor = colorResource(id = R.color.gris)
+        ),
         title = { Text("") },
         navigationIcon = {
             IconButton(onClick = { /* Action pour le menu */ }) {
@@ -104,6 +111,7 @@ fun AppBar() {
         }
     )
 }
+
 
 @Composable
 fun Salutation() {
@@ -134,7 +142,7 @@ fun SearchBar() {
             modifier = Modifier
                 .weight(1f)
                 .background(Color.White)
-                .height(40.dp),
+                .height(50.dp),
             placeholder = {
                 Box(
                     contentAlignment = Alignment.CenterStart,
@@ -173,32 +181,32 @@ fun ScrollHorizontal() {
         horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
 
-            IconButton(onClick = { /*TODO*/ }, modifier = Modifier.size(60.dp)) {
-                Box(modifier = Modifier.fillMaxSize()) {
-                    Image(
-                        painter = painterResource(id = R.drawable.img1),
-                        contentDescription = "Image",
-                        modifier = Modifier.fillMaxSize()
-                    )
-                }
-            }
         IconButton(onClick = { /*TODO*/ }, modifier = Modifier.size(60.dp)) {
-                Box(modifier = Modifier.fillMaxSize()) {
-                    Image(
-                        painter = painterResource(id = R.drawable.img2),
-                        contentDescription = "Image",
-                        modifier = Modifier.fillMaxSize()
-                    )
-                }
+            Box(modifier = Modifier.fillMaxSize()) {
+                Image(
+                    painter = painterResource(id = R.drawable.img1),
+                    contentDescription = "Image",
+                    modifier = Modifier.fillMaxSize()
+                )
             }
+        }
         IconButton(onClick = { /*TODO*/ }, modifier = Modifier.size(60.dp)) {
-                Box(modifier = Modifier.fillMaxSize()) {
-                    Image(
-                        painter = painterResource(id = R.drawable.img3),
-                        contentDescription = "Image",
-                        modifier = Modifier.fillMaxSize()
-                    )
-                }
+            Box(modifier = Modifier.fillMaxSize()) {
+                Image(
+                    painter = painterResource(id = R.drawable.img2),
+                    contentDescription = "Image",
+                    modifier = Modifier.fillMaxSize()
+                )
+            }
+        }
+        IconButton(onClick = { /*TODO*/ }, modifier = Modifier.size(60.dp)) {
+            Box(modifier = Modifier.fillMaxSize()) {
+                Image(
+                    painter = painterResource(id = R.drawable.img3),
+                    contentDescription = "Image",
+                    modifier = Modifier.fillMaxSize()
+                )
+            }
         }
         IconButton(onClick = { /*TODO*/ }, modifier = Modifier.size(60.dp)) {
             Box(modifier = Modifier.fillMaxSize()) {
@@ -252,12 +260,16 @@ fun BookFlight() {
             Text("From", fontWeight = FontWeight.Bold, modifier = Modifier.padding(start = 4.dp))
             OutlinedTextField(
                 value = departureText,
+                shape = RoundedCornerShape(8.dp),
+
                 onValueChange = { departureText = it },
                 modifier = Modifier
                     .fillMaxWidth()
+                    .height(70.dp)
                     .background(color = colorResource(id = R.color.gris))
                     .padding(vertical = 8.dp),
                 placeholder = { Text("Choose Departure from", fontSize = 14.sp) }
+
             )
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -265,9 +277,11 @@ fun BookFlight() {
             Text("To", fontWeight = FontWeight.Bold, modifier = Modifier.padding(start = 4.dp))
             OutlinedTextField(
                 value = arrivalText,
+                shape = RoundedCornerShape(8.dp),
                 onValueChange = { arrivalText = it },
                 modifier = Modifier
                     .fillMaxWidth()
+                    .height(70.dp)
                     .background(color = colorResource(id = R.color.gris))
                     .padding(vertical = 8.dp),
                 placeholder = { Text("Choose Arrival at", fontSize = 14.sp) }
@@ -286,9 +300,11 @@ fun BookFlight() {
             ) {
                 OutlinedTextField(
                     value = departureDateText,
+                    shape = RoundedCornerShape(8.dp),
                     onValueChange = { departureDateText = it },
                     modifier = Modifier
                         .weight(1f)
+                        .height(70.dp)
                         .background(color = colorResource(id = R.color.gris))
                         .padding(vertical = 8.dp),
 
@@ -348,7 +364,7 @@ fun BookFlight() {
                     }
                 }
 
-             // Child column
+                // Child column
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier.padding(horizontal = 8.dp)
@@ -478,7 +494,7 @@ fun BottomBar(selectedTab: Int, onTabSelected: (Int) -> Unit) {
                 Image(
                     painter = painterResource(id = R.drawable.fram2),
                     contentDescription = "icon 2",
-                    modifier = Modifier.size(30.dp)
+                    modifier = Modifier.size(25.dp)
                 )
             }
         )
@@ -489,7 +505,7 @@ fun BottomBar(selectedTab: Int, onTabSelected: (Int) -> Unit) {
                 Image(
                     painter = painterResource(id = R.drawable.fram3),
                     contentDescription = "icon 3",
-                    modifier = Modifier.size(30.dp)
+                    modifier = Modifier.size(25.dp)
                 )
             }
         )
@@ -500,7 +516,7 @@ fun BottomBar(selectedTab: Int, onTabSelected: (Int) -> Unit) {
                 Image(
                     painter = painterResource(id = R.drawable.fram4),
                     contentDescription = "icon 4",
-                    modifier = Modifier.size(30.dp)
+                    modifier = Modifier.size(25.dp)
                 )
             }
         )
@@ -518,41 +534,6 @@ fun HomeScreen() {
     Spacer(modifier = Modifier.height(16.dp))
     BookFlight()
 }
-
-@Composable
-fun FavoritesScreen() {
-    Text(
-        text = "Favorites Screen",
-        fontSize = 22.sp,
-        fontWeight = FontWeight.Bold,
-        modifier = Modifier.fillMaxSize(),
-        textAlign = TextAlign.Center
-    )
-}
-
-@Composable
-fun BookingsScreen() {
-    Text(
-        text = "Bookings Screen",
-        fontSize = 22.sp,
-        fontWeight = FontWeight.Bold,
-        modifier = Modifier.fillMaxSize(),
-        textAlign = TextAlign.Center
-    )
-}
-
-@Composable
-fun ProfileScreen() {
-    Text(
-        text = "Profile Screen",
-        fontSize = 22.sp,
-        fontWeight = FontWeight.Bold,
-        modifier = Modifier.fillMaxSize(),
-        textAlign = TextAlign.Center
-    )
-}
-
-
 
 @Preview(showBackground = true)
 @Composable
