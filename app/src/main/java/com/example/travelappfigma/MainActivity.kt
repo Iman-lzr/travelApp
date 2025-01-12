@@ -6,7 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
+
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -45,6 +46,7 @@ class MainActivity : ComponentActivity() {
                 MainScreen()
             }
         }
+
     }
 }
 
@@ -244,6 +246,9 @@ fun BookFlight() {
 
             Spacer(modifier = Modifier.height(16.dp))
 
+            FlightSelectionBar()
+            Spacer(modifier = Modifier.padding(top = 10.dp))
+
             Text("From", fontWeight = FontWeight.Bold, modifier = Modifier.padding(start = 4.dp))
             OutlinedTextField(
                 value = departureText,
@@ -393,7 +398,7 @@ fun BookFlight() {
                 contentPadding = PaddingValues(0.dp),
                 border = BorderStroke(2.dp, colorResource(id = R.color.purple_500)),
                 elevation = ButtonDefaults.buttonElevation(7.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.white)) // Couleur de fond
+                colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.white))
             ) {
                 Text(
                     text = "SEARCH FLIGHT",
@@ -402,38 +407,106 @@ fun BookFlight() {
                 )
             }
 
-
-
         }}}
+
+@Composable
+fun FlightSelectionBar() {
+    var selectedOption by remember { mutableStateOf("One Way") }
+    val options = listOf("One Way", "Round Trip", "Multicity")
+
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp)
+            .height(40.dp)
+            .background(
+                color = Color.Gray.copy(alpha = 0.2f),
+                shape = RoundedCornerShape(20.dp)
+            ),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        options.forEachIndexed { index, option ->
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxHeight()
+                    .background(
+                        color = if (selectedOption == option) colorResource(id = R.color.purple_500) else Color.Transparent,
+                        shape = when (index) {
+                            0 -> RoundedCornerShape(topStart = 20.dp, bottomStart = 20.dp)
+                            options.size - 1 -> RoundedCornerShape(
+                                topEnd = 20.dp,
+                                bottomEnd = 20.dp
+                            )
+
+                            else -> RoundedCornerShape(0.dp)
+                        }
+                    )
+                    .clickable { selectedOption = option },
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = option,
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = if (selectedOption == option) Color.White else Color.Gray
+                )
+            }
+        }
+    }
+}
 @Composable
 fun BottomBar(selectedTab: Int, onTabSelected: (Int) -> Unit) {
-    NavigationBar {
+    NavigationBar(
+        containerColor = Color.White
+    ) {
         NavigationBarItem(
             selected = selectedTab == 0,
             onClick = { onTabSelected(0) },
-            icon = { Icon(imageVector = Icons.Default.Home, contentDescription = "Home") },
-
+            icon = {
+                Image(
+                    painter = painterResource(id = R.drawable.fram1),
+                    contentDescription = "icon 1",
+                    modifier = Modifier.size(35.dp)
+                )
+            }
         )
         NavigationBarItem(
             selected = selectedTab == 1,
             onClick = { onTabSelected(1) },
-            icon = { Icon(imageVector = Icons.Default.Favorite, contentDescription = "Favorites") },
-
+            icon = {
+                Image(
+                    painter = painterResource(id = R.drawable.fram2),
+                    contentDescription = "icon 2",
+                    modifier = Modifier.size(30.dp)
+                )
+            }
         )
         NavigationBarItem(
             selected = selectedTab == 2,
             onClick = { onTabSelected(2) },
-            icon = { Icon(imageVector = Icons.Default.Face, contentDescription = "Bookings") },
-
+            icon = {
+                Image(
+                    painter = painterResource(id = R.drawable.fram3),
+                    contentDescription = "icon 3",
+                    modifier = Modifier.size(30.dp)
+                )
+            }
         )
         NavigationBarItem(
             selected = selectedTab == 3,
             onClick = { onTabSelected(3) },
-            icon = { Icon(imageVector = Icons.Default.Person, contentDescription = "Profile") },
-
+            icon = {
+                Image(
+                    painter = painterResource(id = R.drawable.fram4),
+                    contentDescription = "icon 4",
+                    modifier = Modifier.size(30.dp)
+                )
+            }
         )
     }
 }
+
 
 @Composable
 fun HomeScreen() {
