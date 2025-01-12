@@ -316,7 +316,7 @@ fun BookFlight() {
                         Button(
                             onClick = { /*TODO: Decrease Adult Count */ },
                             shape = RoundedCornerShape(10.dp),
-                            modifier = Modifier.size(40.dp),
+                            modifier = Modifier.size(30.dp),
                             contentPadding = PaddingValues(0.dp),
                             elevation = ButtonDefaults.buttonElevation(7.dp),
                             colors = ButtonDefaults.buttonColors(containerColor = Color.White)
@@ -333,7 +333,7 @@ fun BookFlight() {
                         Button(
                             onClick = { /*TODO: Increase Adult Count */ },
                             shape = RoundedCornerShape(10.dp),
-                            modifier = Modifier.size(40.dp),
+                            modifier = Modifier.size(30.dp),
                             contentPadding = PaddingValues(0.dp),
                             elevation = ButtonDefaults.buttonElevation(7.dp),
                             colors = ButtonDefaults.buttonColors(colorResource(id = R.color.purple_500) )
@@ -358,7 +358,7 @@ fun BookFlight() {
                         Button(
                             onClick = { /*TODO: Decrease Child Count */ },
                             shape = RoundedCornerShape(10.dp),
-                            modifier = Modifier.size(40.dp),
+                            modifier = Modifier.size(30.dp),
                             contentPadding = PaddingValues(0.dp),
                             elevation = ButtonDefaults.buttonElevation(7.dp),
                             colors = ButtonDefaults.buttonColors(containerColor = Color.White)
@@ -375,7 +375,7 @@ fun BookFlight() {
                         Button(
                             onClick = { /*TODO: Increase Child Count */ },
                             shape = RoundedCornerShape(10.dp),
-                            modifier = Modifier.size(40.dp),
+                            modifier = Modifier.size(30.dp),
                             contentPadding = PaddingValues(0.dp),
                             elevation = ButtonDefaults.buttonElevation(7.dp),
                             colors = ButtonDefaults.buttonColors(colorResource(id = R.color.purple_500))
